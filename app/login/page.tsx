@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { BarChart3, Eye, EyeOff } from "lucide-react"
+import { BarChart3, Eye, EyeOff, Shield } from "lucide-react"
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -17,6 +17,10 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+
+  // Admin credentials
+  const ADMIN_EMAIL = "halimiblin@gmail.com"
+  const ADMIN_PASSWORD = "blini1"
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,10 +33,28 @@ export default function LoginPage() {
       return
     }
 
-    // Get existing users from localStorage
-    const existingUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]")
+    // Check for admin login
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      setTimeout(() => {
+        const adminData = {
+          email: ADMIN_EMAIL,
+          firstName: "Admin",
+          lastName: "User",
+          isAdmin: true,
+          loginTime: new Date().toISOString(),
+          documents: [],
+          analysis: null,
+        }
 
-    // Check if user exists and password matches
+        localStorage.setItem("user", JSON.stringify(adminData))
+        setIsLoading(false)
+        window.location.href = "/admin"
+      }, 1000)
+      return
+    }
+
+    // Regular user login
+    const existingUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]")
     const user = existingUsers.find((u: any) => u.email === email && u.password === password)
 
     if (!user) {
@@ -43,20 +65,18 @@ export default function LoginPage() {
 
     // Simulate login process
     setTimeout(() => {
-      // Store current user session
       const userData = {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
+        isAdmin: false,
         loginTime: new Date().toISOString(),
         documents: user.documents || [],
         analysis: user.analysis || null,
       }
 
       localStorage.setItem("user", JSON.stringify(userData))
-
       setIsLoading(false)
-      // Use window.location for more reliable navigation
       window.location.href = "/dashboard"
     }, 1000)
   }
@@ -132,6 +152,17 @@ export default function LoginPage() {
                 {isLoading ? "Signing in..." : "Sign In"}
               </Button>
             </form>
+
+            {/* Admin Login Hint */}
+            <div className="mt-6 p-3 bg-gray-700 rounded-lg border border-gray-600">
+              <div className="flex items-center space-x-2 text-yellow-400 mb-2">
+                <Shield className="h-4 w-4" />
+                <span className="text-sm font-medium">Admin Access</span>
+              </div>
+              <p className="text-xs text-gray-400">
+                Admin users have access to user management, analytics, and system controls.
+              </p>
+            </div>
 
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-400">
