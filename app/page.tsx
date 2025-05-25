@@ -8,11 +8,12 @@ import { Upload, BarChart3, Target, Users } from "lucide-react"
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black">
+      <title>Career Analyzer</title>
       {/* Header */}
       <header className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <BarChart3 className="h-8 w-8 text-blue-400" />
+       
             <span className="text-2xl font-bold text-white">CareerAnalyzer</span>
           </div>
           <div className="space-x-4">
@@ -45,7 +46,7 @@ export default function HomePage() {
             <Button
               variant="outline"
               size="lg"
-              className="px-8 py-3 border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white"
+              className="px-8 py-3 border-gray-600 text-black-300 hover:bg-gray-800 hover:text-white"
             >
               View Demo
             </Button>
@@ -136,7 +137,7 @@ export default function HomePage() {
             <BarChart3 className="h-6 w-6 text-blue-400" />
             <span className="text-xl font-bold">CareerAnalyzer</span>
           </div>
-          <p className="text-gray-400">© 2024 CareerAnalyzer. All rights reserved.</p>
+          <p className="text-gray-400">© 2025 CareerAnalyzer. All rights reserved.</p>
         </div>
       </footer>
     </div>

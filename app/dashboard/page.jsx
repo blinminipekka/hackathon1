@@ -910,7 +910,7 @@ relevant to career development and job applications.`
       <header className="bg-gray-800 border-b border-gray-700">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <BarChart3 className="h-8 w-8 text-blue-400" />
+ 
             <span className="text-2xl font-bold text-white">CareerAnalyzer</span>
           </div>
           <div className="flex items-center space-x-4">

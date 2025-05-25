@@ -101,7 +101,7 @@ export default function SignUpPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-2">
-            <BarChart3 className="h-8 w-8 text-blue-400" />
+
             <span className="text-2xl font-bold text-white">CareerAnalyzer</span>
           </Link>
         </div>
